@@ -13,19 +13,19 @@ while True:
         users_name = users_input.split("is")[-1].strip().capitalize()
         print(f" ChatBot: Nice to meet you, {users_name}!")
 
-    elif "How are you" in users_input:
+    elif "how are you" in users_input:
         print(" ChatBot: I'm fine! How about you?")
 
     elif "fine" in users_input:
         print(" ChatBot: Glad to hear that!")
 
-    elif " what is your name" in users_input:
+    elif "your name" in users_input:
         print(" ChatBot: I'm a simple chatbot made using Python.")
 
-    elif "yours age" in users_input:
+    elif "age" in users_input:
         print(" ChatBot: I don't have an age, I'm just a few lines of code!")
 
-    elif " Tell Me a Joke" in users_input:
+    elif " tell me a joke" in users_input:
         print(" ChatBot: Why did the computer go to therapy? Because it had too many bugs!")
 
     elif "time" in users_input:
@@ -33,7 +33,7 @@ while True:
         now = datetime.now()
         print(" ChatBot: time is", now.strftime("%I:%M %p"))
 
-    elif "Thank You" in users_input:
+    elif "thank You" in users_input:
         print(" ChatBot: My Pleasure!")
 
     elif "whats the weather?" in users_input:
@@ -41,3 +41,4 @@ while True:
 
     else:
         print(" ChatBot: Sorry, I didn’t understand that. Can you ask something else?")
+
