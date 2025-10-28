@@ -33,12 +33,13 @@ while True:
         now = datetime.now()
         print(" ChatBot: time is", now.strftime("%I:%M %p"))
 
-    elif "thank You" in users_input:
+    elif "thank you" in users_input:
         print(" ChatBot: My Pleasure!")
 
-    elif "whats the weather?" in users_input:
+    elif "what is the weather?" in users_input:
         print(" ChatBot: I’m not sure, but I hope it’s nice where you are!")
 
     else:
         print(" ChatBot: Sorry, I didn’t understand that. Can you ask something else?")
+
 
