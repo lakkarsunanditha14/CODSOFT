@@ -1,0 +1,67 @@
+# Task 3 - Food Recipe Recommendation System
+# Suggests similar dishes based on ingredients
+
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Step 1: Create dataset
+menu_data= {
+    'item_name': [
+        'Paneer Butter Masala',
+        'Kadai Paneer',
+        'Pav Bhaji',
+        'Egg Curry',
+        'Chicken Biryani',
+        'Veg Fried Rice',
+        'Masala Dosa',
+        'Idli Sambhar',
+        'Chole Bhature',
+        'Rajma Chawal',
+         ],
+    'ingredients_requried': [
+        'paneer tomato butter cream spice gravy indian curry',
+        'paneer capsicum onion tomato masala spicy curry',
+        'vegetables mashed buttery pav street food snack spicy',
+        'egg tomato onion gravy spicy curry north indian dinner',
+        'chicken rice spices saffron fried onions flavorful',
+        'rice vegetables soy sauce chinese fried fast food',
+        'rice lentil dosa batter potato masala south indian',
+        'rice lentil steamed soft sambhar chutney breakfast',
+        'chickpeas spicy gravy fried bread north indian meal',
+        'kidney beans tomato gravy rice north indian curry'
+    ]
+}
+
+menu_df = pd.DataFrame(menu_data)
+
+# Step 2: TF-IDF and similarity
+tfidf = TfidfVectorizer(stop_words='english')
+matrix = tfidf.fit_transform(menu_df['ingredients_requried'])
+similarity = cosine_similarity(matrix)
+
+# Step 3: Recommendation function
+def recommend_dish(item_name):
+    item_name = item_name.title().strip()
+    
+    if item_name not in menu_df['item_name'].values:
+        print(f"Sorry!'{item_name}' not found in the list.\n")
+        return
+
+    index = menu_df[menu_df['item_name'] == item_name].index[0]
+    total = list(enumerate(similarity[index]))
+    sorted_score = sorted(total, key=lambda x: x[1], reverse=True)
+    
+    print(f"\n🍽️ items similar to '{item_name}':\n")
+    count = 0
+    for i, total in sorted_score[1:]:
+        count += 1
+        print(f"{count}. {menu_df.iloc[i]['item_name']}  -->  Similarity: {round(total, 2)}")
+        if count == 3:
+            break
+
+# Step 4: Run system
+print(" Welcome to the Food Recipe Recommendation System.")
+print("Available items:\n", list(menu_df['item_name']), "\n")
+user_input = input("Enter a item name: ")
+recommend_dish(user_input)
