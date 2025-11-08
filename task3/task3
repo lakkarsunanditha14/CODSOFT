@@ -1,4 +1,4 @@
-# Task 3 - Food Recipe Recommendation System
+# Task 3 - Food Recipe Recommendation System.
 # Suggests similar dishes based on ingredients
 
 import pandas as pd
